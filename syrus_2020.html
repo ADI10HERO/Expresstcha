@@ -59,6 +59,7 @@
 			</div>
   		</div>
 	</div>
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=Rt3h6gSx"></script>
 
 	<script>
 		var video = document.querySelector("#videoElement");
@@ -66,17 +67,17 @@
 		var emotion = '';
 
 		window.onload = function() {
- 			make_string();
+			 make_string();
+			//  responsiveVoice.speak(document.getElementById("instruction_string").innerHTML); 
 		}
 		
 		function make_string() {
-			console.log(1);
 			var x = Math.floor(Math.random() * 3);
 			emotion = emotions[x];
 			var display_string = "Make a " + emotion + " Face";
-			console.log(display_string);
-    		document.getElementById("instruction_string").innerHTML = display_string;
+			document.getElementById("instruction_string").innerHTML = display_string;
     		document.getElementById("downloaded_img").src="./static/" + emotion + ".jpg";
+			responsiveVoice.speak(display_string);
 		}
 
 		if (navigator.mediaDevices.getUserMedia) {
