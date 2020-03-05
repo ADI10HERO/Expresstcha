@@ -74,9 +74,12 @@
       <p class="flow-text">Welcome to</p>
       <h1 class="title grey-text text-lighten-3">Expresstcha</h1>
 
-      <blockquote class="flow-text">Captcha for Visually Impaired</blockquote>
+	  <blockquote class="flow-text">Captcha for Visually Impaired</blockquote>
 
-
+	  <!-- Webcam video snapshot -->
+	<canvas style = "display:none" id="canvas" width="400" height="380"></canvas style>
+	<!-- <button style="display:none" id="snap">Capture</button> -->
+	<div class="controller">
     <!-- Splash Screen ends -->
 	<h1 align="center">
 		Expresstcha
@@ -92,15 +95,18 @@
   		<div>
   			<div id="container">
 				<video autoplay="true" id="videoElement">
-	
 				</video>
-				<i class="fa fa-stop" onclick="stop()" aria-hidden="true" style="color:red;"></i>
 			</div>
   		</div>
 	</div>
+		
+	</div>
+			 <i class="fa fa-stop" onclick="stop()" aria-hidden="true" style="color:red;"></i>
 	<script src="https://code.responsivevoice.org/responsivevoice.js?key=Rt3h6gSx"></script>
 
 	<script>
+		// const snap = document.getElementById("snap");
+		const canvas = document.getElementById('canvas');
 		var video = document.querySelector("#videoElement");
 		var emotions = ["Happy","Angry","Sad"];
 		var emotion = '';
@@ -122,13 +128,14 @@
 		if (navigator.mediaDevices.getUserMedia) {
 		  navigator.mediaDevices.getUserMedia({ video: true })
 		    .then(function (stream) {
-		      video.srcObject = stream;
+			  video.srcObject = stream;
+			  take_snap();
 		    })
 		    .catch(function (err0r) {
 		      console.log("Something went wrong!");
 		    });
 		}
-
+		
 		function stop(e) {
 		  var stream = video.srcObject;
 		  var tracks = stream.getTracks();
@@ -140,6 +147,16 @@
 
 	 	  video.srcObject = null;
 		}
+		function take_snap(){
+			var context = canvas.getContext('2d');
+			context.drawImage(video, 0, 0, 640, 480);
+			setTimeout(take_snap, 2000);
+
+		}
+		
+		// snap.addEventListener("click", function() {
+		
+        // });
 	</script>
 </body>
 </html>
