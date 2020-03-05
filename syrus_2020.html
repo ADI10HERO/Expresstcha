@@ -3,11 +3,18 @@
 <head>
 	<title>Expresstcha</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto&subset=latin,devanagari">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>	
+
 </head>
 <style>
 #downloaded_img {
 	display: block;
-	width: 50%;
+	width: 100%;
 	height: 375px;
 	margin-left: auto;
 	margin-right: auto;
@@ -37,45 +44,98 @@
   padding: 20px;
   font-size: 30px;
 }
-.custom_font {
-  font-family: myFirstFont;
-}
 </style>
 <body>
-	<div class="custom_font" align="center">
-		<h1>Expresstcha</h1>
-	</div>
+
+    <!-- Splash Screen -->
+
+  <body class="welcome">
+  <span id="splash-overlay" class="splash"></span>
+  <span id="welcome" class="z-depth-4"></span>
+ 
+  <header class="navbar-fixed"> 
+    <nav class="row deep-purple darken-3">
+      <div class="col s12">
+        <ul class="right">
+          <li class="right">
+            <a href="" target="_blank" class="fa fa-facebook-square fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
+          </li>
+          <li class="right">
+            <a href="" target="_blank" class="fa fa-github-square fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="valign-wrapper">
+    <span class="container grey-text text-lighten-1 ">
+
+      <p class="flow-text">Welcome to</p>
+      <h1 class="title grey-text text-lighten-3">Expresstcha</h1>
+
+	  <blockquote class="flow-text">Captcha for Visually Impaired</blockquote>
+
+	  <!-- Webcam video snapshot -->
+	<canvas style = "display:none" id="canvas" width="400" height="380"></canvas style>
+	<!-- <button style="display:none" id="snap">Capture</button> -->
+	<div class="controller">
+    <!-- Splash Screen ends -->
+	<h1 align="center">
+		Expresstcha
+	</h1>
 	<h3> Confirm you're a human </h3>
 
-	<p>Make a "Happy Face"</p>
+	<p id="instruction_string"></p><i class="fa fa-refresh" onclick="make_string()" aria-hidden="true" style="color:green;"></i> 
 
 	<div class="flex-container">
   		<div>
-			<img id="downloaded_img" src="C:\Users\Hp\Documents\cutie.jpg" alt="demo_expression"></img>
+			<img id="downloaded_img" alt="demo_expression"></img>
   		</div>
   		<div>
   			<div id="container">
 				<video autoplay="true" id="videoElement">
-	
 				</video>
-				<i class="fa fa-stop" onclick="stop()" aria-hidden="true" style="color:red;"></i>
 			</div>
   		</div>
 	</div>
+		
+	</div>
+			 <i class="fa fa-stop" onclick="stop()" aria-hidden="true" style="color:red;"></i>
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=Rt3h6gSx"></script>
 
 	<script>
+		// const snap = document.getElementById("snap");
+		const canvas = document.getElementById('canvas');
 		var video = document.querySelector("#videoElement");
+		var emotions = ["Happy","Angry","Sad"];
+		var emotion = '';
+
+		window.onload = function() {
+			 make_string();
+			//  responsiveVoice.speak(document.getElementById("instruction_string").innerHTML); 
+		}
+		
+		function make_string() {
+			var x = Math.floor(Math.random() * 3);
+			emotion = emotions[x];
+			var display_string = "Make a " + emotion + " Face";
+			document.getElementById("instruction_string").innerHTML = display_string;
+    		document.getElementById("downloaded_img").src="./static/" + emotion + ".jpg";
+			responsiveVoice.speak(display_string);
+		}
 
 		if (navigator.mediaDevices.getUserMedia) {
 		  navigator.mediaDevices.getUserMedia({ video: true })
 		    .then(function (stream) {
-		      video.srcObject = stream;
+			  video.srcObject = stream;
+			  take_snap();
 		    })
 		    .catch(function (err0r) {
 		      console.log("Something went wrong!");
 		    });
 		}
-
+		
 		function stop(e) {
 		  var stream = video.srcObject;
 		  var tracks = stream.getTracks();
@@ -85,8 +145,18 @@
 		    track.stop();
 		  }
 
-		  video.srcObject = null;
+	 	  video.srcObject = null;
 		}
+		function take_snap(){
+			var context = canvas.getContext('2d');
+			context.drawImage(video, 0, 0, 640, 480);
+			setTimeout(take_snap, 2000);
+
+		}
+		
+		// snap.addEventListener("click", function() {
+		
+        // });
 	</script>
 </body>
 </html>
