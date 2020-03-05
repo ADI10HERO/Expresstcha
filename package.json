@@ -1,0 +1,25 @@
+{
+  "name": "expresstcha",
+  "version": "1.0.0",
+  "description": "An exhilarting alernative to the traditional captcha, focused on but not limited to visually impared",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dheerajodha/Expresstcha.git"
+  },
+  "keywords": [
+    "expresstcha",
+    "emotion-detection",
+    "visually-impared",
+    "captcha"
+  ],
+  "author": "Aditya Srivastava, Tanvi Shinde, Dheeraj Jodha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dheerajodha/Expresstcha/issues"
+  },
+  "homepage": "https://github.com/dheerajodha/Expresstcha#readme"
+}
