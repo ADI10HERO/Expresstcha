@@ -1,9 +1,33 @@
-<!DOCTYPE html>
+var video = document.querySelector("#videoElement");
+
+		if (navigator.mediaDevices.getUserMedia) {
+		  navigator.mediaDevices.getUserMedia({ video: true })
+		    .then(function (stream) {
+		      video.srcObject = stream;
+		    })
+		    .catch(function (err0r) {
+		      console.log("Something went wrong!");
+		    });
+		}
+
+		function stop(e) {
+		  var stream = video.srcObject;
+		  var tracks = stream.getTracks();
+
+		  for (var i = 0; i < tracks.length; i++) {
+		    var track = tracks[i];
+		    track.stop();
+		  }
+
+		  video.srcObject = null;
+		}
+
 <html>
-<head>
+
+	<head>
 	<title>Expresstcha</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+	</head>
 <style>
 #downloaded_img {
 	display: block;
@@ -37,14 +61,11 @@
   padding: 20px;
   font-size: 30px;
 }
-.custom_font {
-  font-family: myFirstFont;
-}
 </style>
 <body>
-	<div class="custom_font" align="center">
-		<h1>Expresstcha</h1>
-	</div>
+	<h1 align="center">
+		Expresstcha
+	</h1>
 	<h3> Confirm you're a human </h3>
 
 	<p>Make a "Happy Face"</p>
@@ -62,31 +83,5 @@
 			</div>
   		</div>
 	</div>
-
-	<script>
-		var video = document.querySelector("#videoElement");
-
-		if (navigator.mediaDevices.getUserMedia) {
-		  navigator.mediaDevices.getUserMedia({ video: true })
-		    .then(function (stream) {
-		      video.srcObject = stream;
-		    })
-		    .catch(function (err0r) {
-		      console.log("Something went wrong!");
-		    });
-		}
-
-		function stop(e) {
-		  var stream = video.srcObject;
-		  var tracks = stream.getTracks();
-
-		  for (var i = 0; i < tracks.length; i++) {
-		    var track = tracks[i];
-		    track.stop();
-		  }
-
-		  video.srcObject = null;
-		}
-	</script>
 </body>
 </html>
