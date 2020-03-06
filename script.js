@@ -1,14 +1,6 @@
-var emotions = ["Happy","Angry","Sad"];
+var emotions = ["happy","angry","sad"];
 var emotion = '';
-var vote_arr  = {
-  Neutral: 0,
-  Happy: 0,
-  Sad: 0,
-  Angry: 0,
-  Fearful: 0,
-  Disgusted: 0,
-  Surprised : 0
-}
+
 var final_emotion = '';
 
 window.onload = function() {
@@ -28,9 +20,12 @@ window.onload = function() {
       )
     }
     make_string();
-  
-    setTimeout(detect, 1000 );
-    
+    const redirect_url = 'https://www.google.com'; //later from user
+    const old_url = 'https://syrushackathon.tech/'; //later from user
+    setTimeout(function() {
+      detect(old_url, redirect_url)  
+    }, 1 );
+
 }
 
 function getmax(obj){
@@ -46,12 +41,6 @@ function getmax(obj){
   return max_key;
 }
 
-
-// function timeout(){
-//     detect();
-//     setTimeout(timeout,5000);
-//     }
-
 function make_string() {
   var x = Math.floor(Math.random() * 3);
   emotion = emotions[x];
@@ -60,28 +49,50 @@ function make_string() {
   document.getElementById("downloaded_img").src="./static/" + emotion + ".jpg";
   responsiveVoice.speak(display_string);
 }
-
-function detect(){
+var vote_arr  = {
+  Neutral: 0,
+  happy: 0,
+  sad: 0,
+  angry: 0,
+  fearful: 0,
+  disgusted: 0,
+  surprised : 0
+}
+function detect(old_url, redirect_url){
   const video = document.getElementById('videoElement')
   var delay = 100;
+  var timer = 0;
   video.addEventListener('play', () => {
-    console.log("herererere")
     setInterval(async () => {
       const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-      console.log(detections)
       if (detections === undefined || detections==[{}]){
         console.log(0) 
        }
        else{
         var emotion_dict = detections[0]['expressions']
-        console.log(emotion_dict)
         vote_arr[getmax(emotion_dict)] +=1;
-        // console.log(vote_arr)
         final_emotion = getmax(vote_arr);
-        // console.log(final_emotion)
-        document.getElementById('json').innerHTML = final_emotion;
-     }
-    }, delay) 
+        console.log(final_emotion)
+        console.log(emotion)
+        if (emotion == final_emotion){
+          url = await sucess();
+          window.location.replace(redirect_url)
+        }
+        if (timer >= 5000){
+          url = await failure();
+          window.location.replace(old_url)
+        }
+      }
+      console.log(timer)
+      timer+=100;
+    }, delay)
   })
-  setTimeout(detect, 500);
+}
+
+function sucess(){
+  responsiveVoice.speak("Captcha cleared, redirecting to destination website")
+}
+
+function failure(){
+  responsiveVoice.speak("Captcha failed, redirecting to source website")
 }
