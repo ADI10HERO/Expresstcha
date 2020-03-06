@@ -3,22 +3,20 @@
 <head>
 	<title>Expresstcha</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto&subset=latin,devanagari">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>	
-
 </head>
 <style>
 #downloaded_img {
 	display: block;
-	width: 100%;
+	width: 90%;
 	height: 375px;
 	margin-left: auto;
 	margin-right: auto;
 }
+#shadow1 {
+
+  	padding: 10px;
+  	box-shadow: 10px 10px 18px #888888;
+}at
 #container {
 	margin: 0px auto;
 	width: 80%;
@@ -44,57 +42,43 @@
   padding: 20px;
   font-size: 30px;
 }
+@font-face {
+  font-family: 'MyWebFont';
+  src: url('webfont.eot'); /* IE9 Compat Modes */
+  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+body {
+  font-family: 'MyWebFont', Fallback, sans-serif;
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(DodgerBlue, blue);
+}
 </style>
-<body>
+<body style="background-color: #3090C7;">
 
     <!-- Splash Screen -->
-
-  <body class="welcome">
-  <span id="splash-overlay" class="splash"></span>
-  <span id="welcome" class="z-depth-4"></span>
- 
-  <header class="navbar-fixed"> 
-    <nav class="row deep-purple darken-3">
-      <div class="col s12">
-        <ul class="right">
-          <li class="right">
-            <a href="" target="_blank" class="fa fa-facebook-square fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
-          </li>
-          <li class="right">
-            <a href="" target="_blank" class="fa fa-github-square fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <main class="valign-wrapper">
-    <span class="container grey-text text-lighten-1 ">
-
-      <p class="flow-text">Welcome to</p>
-      <h1 class="title grey-text text-lighten-3">Expresstcha</h1>
-
-      <blockquote class="flow-text">Captcha for Visually Impaired</blockquote>
-
 
     <!-- Splash Screen ends -->
 	<h1 align="center">
 		Expresstcha
 	</h1>
-	<h3> Confirm you're a human </h3>
+	<h2><i class="fa fa-bell" aria-hidden="true"></i>
+ Confirm you're a human </h2>
 
-	<p id="instruction_string"></p><i class="fa fa-refresh" onclick="make_string()" aria-hidden="true" style="color:green;"></i> 
+	<p id="instruction_string"></p><i class="fa fa-refresh" onclick="make_string()" style="font-size:44px" aria-hidden="true" style="color:green;"></i> 
 
 	<div class="flex-container">
-  		<div>
+  		<div id="shadow1" style="background-color:Dodgerblue">
 			<img id="downloaded_img" alt="demo_expression"></img>
   		</div>
-  		<div>
+  		<div id="shadow1" style="background-color:Dodgerblue">
   			<div id="container">
 				<video autoplay="true" id="videoElement">
 	
 				</video>
-				<i class="fa fa-stop" onclick="stop()" aria-hidden="true" style="color:red;"></i>
 			</div>
   		</div>
 	</div>
