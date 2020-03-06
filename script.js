@@ -1,4 +1,4 @@
-const video = document.getElementById('video')
+const video = document.getElementById('videoElement')
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
@@ -15,6 +15,8 @@ function startVideo() {
   )
 }
 
+var delay = 500
+
 video.addEventListener('play', () => {
   const canvas = faceapi.createCanvasFromMedia(video)
   document.body.append(canvas)
@@ -28,6 +30,5 @@ video.addEventListener('play', () => {
     faceapi.draw.drawDetections(canvas, resizedDetections)
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-  }, 100)
-  
+  }, delay) 
 })
