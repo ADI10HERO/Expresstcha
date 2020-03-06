@@ -2,7 +2,7 @@
   "name": "expresstcha",
   "version": "1.0.0",
   "description": "An exhilarting alernative to the traditional captcha, focused on but not limited to visually impaired",
-  "main": "index.js",
+  "main": "worker.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/dheerajodha/Expresstcha/issues"
   },
-  "homepage": "https://github.com/dheerajodha/Expresstcha#readme"
+  "homepage": "https://github.com/dheerajodha/Expresstcha#readme",
+  "dependencies": {
+    "face-api.js": "^0.22.1"
+  }
 }
