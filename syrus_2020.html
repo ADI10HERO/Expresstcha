@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>Expresstcha</title>
-    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Ropa+Sans&display=swap" rel="stylesheet">
+	<script  src="face-api.min.js"></script>
+	<script src="./script.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Fredoka+One|Ropa+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -11,42 +13,8 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>	
-	<script  src="face-api.min.js"></script>
-  	<script src="./script.js"></script>
-	<script src="https://code.responsivevoice.org/responsivevoice.js?key=Rt3h6gSx"></script>
-	<!-- <script>
-		// const canvas = document.getElementById('canvas');
-		// var videoElement = document.querySelector("#videoElement");
 
-		// if (navigator.mediaDevices.getUserMedia) {
-		//   navigator.mediaDevices.getUserMedia({ videoElement: true })
-			// .then(function (stream) {
-			//   videoElement.srcObject = stream;
-			//   take_snap();
-			// })
-			// .catch(function (err0r) {
-			//   console.log("Something went wrong!");
-		//     });
-		// }
-
-		// function stop(e) {
-		//   var stream = videoElement.srcObject;
-		//   var tracks = stream.getTracks();
-
-		//   for (var i = 0; i < tracks.length; i++) {
-		//     var track = tracks[i];
-		//     track.stop();
-		//   }
-
-			//   videoElement.srcObject = null;
-		// }
-		// function take_snap(){
-		// 	var context = canvas.getContext('2d');
-		// 	context.drawImage(videoElement, 0, 0, 640, 480);
-		// 	setTimeout(take_snap, 2000);
-
-		// }
-	</script>	 -->
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=Rt3h6gSx"></script>		
 </head>
 <style>
 html, body{
@@ -140,7 +108,6 @@ body {
 
 	<p id="instruction_string"></p>
 	<i class="fa fa-refresh" id="refresh" onclick='make_string()' style="font-size:44px" aria-hidden="true" style="color:green;"></i> 
-
 	<div class="flex-container">
   		<div id="shadow1" style="background-color:#B0E0E6">
 			<img id="downloaded_img" alt="demo_expression"></img>
@@ -148,7 +115,7 @@ body {
   		<div id="shadow1" style="background-color:Dodgerblue">
   			<div id="container">
 				<video autoplay="true" id="videoElement">
-				</video>
+				</video>							
 			</div>
 		</div>
 	</div>
