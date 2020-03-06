@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>Expresstcha</title>
-    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Ropa+Sans&display=swap" rel="stylesheet">
+	<script  src="face-api.min.js"></script>
+	<script src="./script.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Fredoka+One|Ropa+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 	<!--link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"-->
@@ -76,8 +78,7 @@
 		// 	context.drawImage(videoElement, 0, 0, 640, 480);
 		// 	setTimeout(take_snap, 2000);
 
-		// }
-	</script>	
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=Rt3h6gSx"></script>		
 </head>
 <style>
 html, body{
@@ -341,15 +342,22 @@ body {
 
 	<div><p style="color:white" id="instruction_string"></p><i class="fa fa-refresh" onclick="make_string()" style="font-size: 40px;color:green;" aria-hidden="true"><div id="countdown"></div></i> </div> 
 
-	<div class="flex-container">
+<!-- =======
+	</h1></div>
+	<h1 id='json'></h1>
+	<div id="message" align="center"><h4><i class="fa fa-bell blink" aria-hidden="true"></i>    Please confirm that you're a human </h4></div>
+
+	<p id="instruction_string"></p>
+	<i class="fa fa-refresh" id="refresh" onclick='make_string()' style="font-size:44px" aria-hidden="true" style="color:green;"></i> 
+>>>>>>> 59e9e8237d1d17ae2a075b8a2ac88bfb9e1ef627
+ -->	<div class="flex-container">
   		<div id="shadow1" >
 			<img id="downloaded_img" style="height: 370px" alt="demo_expression"></img>
   		</div>
   		<div id="shadow1" >
   			<div id="container">
 				<video autoplay="true" id="videoElement">
-	
-				</video>
+				</video>							
 			</div>
 		</div>
 	</div>      
