@@ -70,7 +70,7 @@ var final_emotion = '';
 //   }, delay) 
 // })
 
-export function detect(){
+function detect(){
   var delay = 20000;
   video.addEventListener('play', () => {
     setInterval(async () => {
@@ -79,12 +79,12 @@ export function detect(){
         console.log(0) 
        }
        else{
-         var emotion_dict = detections['expressions']
-       vote_arr[getmax(emotion_dict)] +=1;
-       console.log(vote_arr)
-       final_emotion = getmax(vote_arr);
-       console.log(final_emotion)
-       document.getElementById('json').innerHTML = final_emotion;
+        var emotion_dict = detections['expressions']
+        vote_arr[getmax(emotion_dict)] +=1;
+        console.log(vote_arr)
+        final_emotion = getmax(vote_arr);
+        console.log(final_emotion)
+        document.getElementById('json').innerHTML = final_emotion;
      }
     }, delay) 
   })
