@@ -12,31 +12,11 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>	
 	<script  src="face-api.min.js"></script>
-  	<script type="module" src="./script.js"></script>
+  	<script src="./script.js"></script>
 	<script src="https://code.responsivevoice.org/responsivevoice.js?key=Rt3h6gSx"></script>
-	<script>
+	<!-- <script>
 		// const canvas = document.getElementById('canvas');
 		// var videoElement = document.querySelector("#videoElement");
-		var emotions = ["Happy","Angry","Sad"];
-		var emotion = '';
-
-		window.onload = function() {
-				make_string();
-			    // responsiveVoice.speak(document.getElementById("instruction_string").innerHTML); 
-		}
-		function timeout(){
-        detect();
-        setTimeout(timeout,5000);
-        }
-		function make_string() {
-			var x = Math.floor(Math.random() * 3);
-			emotion = emotions[x];
-			var display_string = "Make a " + emotion + " Face. You have five seconds";
-			document.getElementById("instruction_string").innerHTML = display_string;
-			document.getElementById("downloaded_img").src="./static/" + emotion + ".jpg";
-			responsiveVoice.speak(display_string);
-			timeout();
-		}
 
 		// if (navigator.mediaDevices.getUserMedia) {
 		//   navigator.mediaDevices.getUserMedia({ videoElement: true })
@@ -66,7 +46,7 @@
 		// 	setTimeout(take_snap, 2000);
 
 		// }
-	</script>	
+	</script>	 -->
 </head>
 <style>
 html, body{
@@ -155,9 +135,11 @@ body {
 	<div style="color:white;"><h1 align="center">
 		Expresstcha
 	</h1></div>
+	<h1 id='json'></h1>
 	<div id="message" align="center"><h4><i class="fa fa-bell blink" aria-hidden="true"></i>    Please confirm that you're a human </h4></div>
 
-	<p id="instruction_string"></p><i class="fa fa-refresh" onclick="make_string()" style="font-size:44px" aria-hidden="true" style="color:green;"></i> 
+	<p id="instruction_string"></p>
+	<i class="fa fa-refresh" id="refresh" onclick='make_string()' style="font-size:44px" aria-hidden="true" style="color:green;"></i> 
 
 	<div class="flex-container">
   		<div id="shadow1" style="background-color:#B0E0E6">
@@ -166,32 +148,9 @@ body {
   		<div id="shadow1" style="background-color:Dodgerblue">
   			<div id="container">
 				<video autoplay="true" id="videoElement">
-	
 				</video>
 			</div>
 		</div>
 	</div>
-
-<!-- <body>
-	<div class="controller">
-		<h1 align="center">Expresstcha</h1>
-		<h1 id='json'>hh</h1>
-		<h3> Confirm you're a human </h3>
-		<p id="instruction_string"></p><i class="fa fa-refresh" onclick="make_string()" aria-hidden="true" style="color:green;"></i> 
-		<div class="flex-container">
-			<div>
-				<img id="downloaded_img" alt="demo_expression"></img>
- 
-			</div>
-			<div>
-				<div id="container">
-					<video width="720" height="560" autoplay muted id="videoElement" ></video>
-				</div>
-			</div>
-		</div>
-<<<<<<< HEAD
-	    <i class="fa fa-stop" onclick="stop()" aria-hidden="true" style="color:red;"></i>
--->
-
 </body>
 </html>
