@@ -41,32 +41,52 @@ var vote_arr  = {
 }
 
 var final_emotion = '';
-video.addEventListener('play', () => {
-  // const canvas = faceapi.createCanvasFromMedia(video)
-  // document.body.append(canvas)
-  // const displaySize = { width: video.width, height: video.height }
-  // faceapi.matchDimensions(canvas, displaySize)
-  setInterval(async () => {
-    const detections = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-    // console.log(emotion_dict);
-    if (detections === undefined){
-     console.log(0) 
-    }
-    else{
-      var emotion_dict = detections['expressions']
-    vote_arr[getmax(emotion_dict)] +=1;
-    console.log(vote_arr)
-    final_emotion = getmax(vote_arr);
-    console.log(final_emotion)
-    document.getElementById('json').innerHTML = final_emotion;
-  }
-    // js_det = JSON.parse(detections)
-    // document.getElementById('json').innerHTML =  max(detections['expressions']);
-    //const resizedDetections = faceapi.resizeResults(detections, displaySize)
-    //canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-    //faceapi.draw.drawDetections(canvas, resizedDetections)
-    //faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-    //faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-  }, delay) 
-})
+// video.addEventListener('play', () => {
+//   // const canvas = faceapi.createCanvasFromMedia(video)
+//   // document.body.append(canvas)
+//   // const displaySize = { width: video.width, height: video.height }
+//   // faceapi.matchDimensions(canvas, displaySize)
+//   setInterval(async () => {
+//     const detections = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+//     // console.log(emotion_dict);
+//     if (detections === undefined){
+//      console.log(0) 
+//     }
+//     else{
+//       var emotion_dict = detections['expressions']
+//     vote_arr[getmax(emotion_dict)] +=1;
+//     console.log(vote_arr)
+//     final_emotion = getmax(vote_arr);
+//     console.log(final_emotion)
+//     document.getElementById('json').innerHTML = final_emotion;
+//   }
+//     // js_det = JSON.parse(detections)
+//     // document.getElementById('json').innerHTML =  max(detections['expressions']);
+//     //const resizedDetections = faceapi.resizeResults(detections, displaySize)
+//     //canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+//     //faceapi.draw.drawDetections(canvas, resizedDetections)
+//     //faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+//     //faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+//   }, delay) 
+// })
 
+export function detect(){
+  var delay = 20000;
+  video.addEventListener('play', () => {
+    setInterval(async () => {
+      const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+      if (detections === undefined){
+        console.log(0) 
+       }
+       else{
+         var emotion_dict = detections['expressions']
+       vote_arr[getmax(emotion_dict)] +=1;
+       console.log(vote_arr)
+       final_emotion = getmax(vote_arr);
+       console.log(final_emotion)
+       document.getElementById('json').innerHTML = final_emotion;
+     }
+    }, delay) 
+  })
+  setTimeout(detect, 500);
+}
