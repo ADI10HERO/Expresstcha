@@ -2,8 +2,10 @@
 <html>
 <head>
 	<title>Expresstcha</title>
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Ropa+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto&subset=latin,devanagari">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -67,6 +69,29 @@
 	</script>	
 </head>
 <style>
+html, body{
+width: 100%;
+height: 100%;
+}
+  .blink {
+      animation: blink 2s steps(5, start) infinite;
+      -webkit-animation: blink 1s steps(5, start) infinite;
+    }
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+    @-webkit-keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+#instruction_string {
+	padding-left: 100px;
+	font-size: 25px;
+    font-family: 'Ropa Sans', sans-serif; 
+}
 #downloaded_img {
 	display: block;
 	width: 90%;
@@ -75,10 +100,10 @@
 	margin-right: auto;
 }
 #shadow1 {
-
+    border-radius: 25px;
   	padding: 10px;
   	box-shadow: 10px 10px 18px #888888;
-}at
+}
 #container {
 	margin: 0px auto;
 	width: 80%;
@@ -88,7 +113,9 @@
 #videoElement {
 	width: 100%;
 	height: 375px;
-	background-color: #666;
+}
+#message {
+	font-family: 'Ropa Sans', sans-serif; 
 }
 .flex-container {
   display: flex;
@@ -114,9 +141,9 @@
        url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 body {
-  font-family: 'MyWebFont', Fallback, sans-serif;
+  font-family: 'Fredoka One', cursive;
   background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(DodgerBlue, blue);
+  background-image: linear-gradient(DodgerBlue, #808080);
 }
 </style>
 
@@ -125,16 +152,15 @@ body {
     <!-- Splash Screen -->
 
     <!-- Splash Screen ends -->
-	<h1 align="center">
+	<div style="color:white;"><h1 align="center">
 		Expresstcha
-	</h1>
-	<h2><i class="fa fa-bell" aria-hidden="true"></i>
- Confirm you're a human </h2>
+	</h1></div>
+	<div id="message" align="center"><h4><i class="fa fa-bell blink" aria-hidden="true"></i>    Please confirm that you're a human </h4></div>
 
 	<p id="instruction_string"></p><i class="fa fa-refresh" onclick="make_string()" style="font-size:44px" aria-hidden="true" style="color:green;"></i> 
 
 	<div class="flex-container">
-  		<div id="shadow1" style="background-color:Dodgerblue">
+  		<div id="shadow1" style="background-color:#B0E0E6">
 			<img id="downloaded_img" alt="demo_expression"></img>
   		</div>
   		<div id="shadow1" style="background-color:Dodgerblue">
@@ -142,6 +168,9 @@ body {
 				<video autoplay="true" id="videoElement">
 	
 				</video>
+			</div>
+		</div>
+	</div>
 
 <!-- <body>
 	<div class="controller">
@@ -152,7 +181,7 @@ body {
 		<div class="flex-container">
 			<div>
 				<img id="downloaded_img" alt="demo_expression"></img>
- -->
+ 
 			</div>
 			<div>
 				<div id="container">
@@ -160,7 +189,9 @@ body {
 				</div>
 			</div>
 		</div>
-		<!-- <i class="fa fa-stop" onclick="stop()" aria-hidden="true" style="color:red;"></i> -->
-	</div>
+<<<<<<< HEAD
+	    <i class="fa fa-stop" onclick="stop()" aria-hidden="true" style="color:red;"></i>
+-->
+
 </body>
 </html>
