@@ -9,6 +9,7 @@ var vote_arr  = {
   Disgusted: 0,
   Surprised : 0
 }
+var final_emotion = '';
 
 window.onload = function() {
     const video = document.getElementById('videoElement')
@@ -17,7 +18,7 @@ window.onload = function() {
       faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
       faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
       faceapi.nets.faceExpressionNet.loadFromUri('/models')
-    ]).then(startVideo).then(this.make_string)
+    ]).then(startVideo)
 
     function startVideo() {
       navigator.getUserMedia(
@@ -26,9 +27,11 @@ window.onload = function() {
         err => console.error(err)
       )
     }
-  }
-
-var final_emotion = '';
+    make_string();
+  
+    setTimeout(detect, 1000 );
+    
+}
 
 function getmax(obj){
   var curr_max = 0;
@@ -44,10 +47,10 @@ function getmax(obj){
 }
 
 
-function timeout(){
-    detect();
-    setTimeout(timeout,5000);
-    }
+// function timeout(){
+//     detect();
+//     setTimeout(timeout,5000);
+//     }
 
 function make_string() {
   var x = Math.floor(Math.random() * 3);
@@ -58,50 +61,24 @@ function make_string() {
   responsiveVoice.speak(display_string);
 }
 
-var delay = 100
-
-// video.addEventListener('play', () => {
-//   setInterval(async () => {
-//     const detections = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-//     console.log(emotion_dict);
-//     if (detections === undefined){
-//      console.log(0) 
-//     }
-//     else{
-//       var emotion_dict = detections['expressions']
-//     vote_arr[getmax(emotion_dict)] +=1;
-//     console.log(vote_arr)
-//     final_emotion = getmax(vote_arr);
-//     console.log(final_emotion)
-//     document.getElementById('json').innerHTML = final_emotion;
-//   }
-//     // js_det = JSON.parse(detections)
-//     // document.getElementById('json').innerHTML =  max(detections['expressions']);
-//     //const resizedDetections = faceapi.resizeResults(detections, displaySize)
-//     //canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-//     //faceapi.draw.drawDetections(canvas, resizedDetections)
-//     //faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-//     //faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-//   }, delay) 
-// })
-
 function detect(){
-  console.log("in detect")
-  var delay = 700;
+  const video = document.getElementById('videoElement')
+  var delay = 100;
   video.addEventListener('play', () => {
     console.log("herererere")
     setInterval(async () => {
       const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-      if (detections === undefined){
+      console.log(detections)
+      if (detections === undefined || detections==[{}]){
         console.log(0) 
        }
        else{
-        var emotion_dict = detections['expressions']
+        var emotion_dict = detections[0]['expressions']
         console.log(emotion_dict)
         vote_arr[getmax(emotion_dict)] +=1;
-        console.log(vote_arr)
+        // console.log(vote_arr)
         final_emotion = getmax(vote_arr);
-        console.log(final_emotion)
+        // console.log(final_emotion)
         document.getElementById('json').innerHTML = final_emotion;
      }
     }, delay) 
