@@ -22,16 +22,20 @@
 
 		window.onload = function() {
 				make_string();
-			//  responsiveVoice.speak(document.getElementById("instruction_string").innerHTML); 
+			    // responsiveVoice.speak(document.getElementById("instruction_string").innerHTML); 
 		}
-
+		function timeout(){
+        detect();
+        setTimeout(timeout,5000);
+        }
 		function make_string() {
 			var x = Math.floor(Math.random() * 3);
 			emotion = emotions[x];
-			var display_string = "Make a " + emotion + " Face";
+			var display_string = "Make a " + emotion + " Face. You have five seconds";
 			document.getElementById("instruction_string").innerHTML = display_string;
 			document.getElementById("downloaded_img").src="./static/" + emotion + ".jpg";
 			responsiveVoice.speak(display_string);
+			timeout();
 		}
 
 		// if (navigator.mediaDevices.getUserMedia) {
@@ -184,6 +188,7 @@ body {
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 	    <i class="fa fa-stop" onclick="stop()" aria-hidden="true" style="color:red;"></i>
 -->
 
